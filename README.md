@@ -1,1 +1,1 @@
-# jeonseyeokjeon-android
+# connect-android
