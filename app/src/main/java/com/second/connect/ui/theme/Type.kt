@@ -36,7 +36,7 @@ val Typography = Typography(
     */
 )
 
-val pretendard = FontFamily(
+val Pretendard = FontFamily(
     Font(R.font.pretendard_regular, FontWeight.Normal),
     Font(R.font.pretendard_medium, FontWeight.Medium),
     Font(R.font.pretendard_semibold, FontWeight.SemiBold),
