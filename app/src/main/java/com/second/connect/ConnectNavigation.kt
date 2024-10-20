@@ -1,9 +1,13 @@
 package com.second.connect
 
+import androidx.compose.foundation.Image
 import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -55,7 +59,7 @@ fun ConnectBottomNavigation(
         navItems.forEach { navItem ->
             NavigationBarItem(
                 icon = {
-                    Icon(
+                    Image(
                         painter = painterResource(id = if(navItem.screenRoute == currentRoute) navItem.selectIcon else navItem.unselectIcon),
                         contentDescription = null
                     )
@@ -70,6 +74,9 @@ fun ConnectBottomNavigation(
                         restoreState = true
                     }
                 },
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color.Transparent
+                )
             )
         }
     }
