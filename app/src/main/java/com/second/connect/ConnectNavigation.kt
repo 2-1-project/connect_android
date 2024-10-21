@@ -1,8 +1,6 @@
 package com.second.connect
 
 import androidx.compose.foundation.Image
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
@@ -14,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.second.connect.ui.wallet.WalletScreen
 import com.second.connect.ui.share.ShareScreen
 import com.second.connect.ui.theme.White
 
@@ -23,11 +22,12 @@ sealed class BottomNavItem(
     val selectIcon: Int
 ) {
     object Share : BottomNavItem(SHARE, R.drawable.share_unselect, R.drawable.share_select)
+    object Wallet: BottomNavItem(WALLET, R.drawable.wallet_unselect, R.drawable.wallet_select)
 }
 
 const val MY_CARD = "MY_CARD"
 const val SHARE = "SHARE"
-const val CONNECTS = "CONNECTS"
+const val WALLET = "WALLET"
 const val MY_PAGE = "MY_PAGE"
 
 @Composable
@@ -39,6 +39,9 @@ fun ConnectGraph(navController: NavHostController) {
         composable(BottomNavItem.Share.screenRoute) {
             ShareScreen()
         }
+        composable(BottomNavItem.Wallet.screenRoute) {
+            WalletScreen()
+        }
     }
 }
 
@@ -47,7 +50,8 @@ fun ConnectBottomNavigation(
     navController: NavController
 ) {
     val navItems = listOf<BottomNavItem>(
-        BottomNavItem.Share
+        BottomNavItem.Share,
+        BottomNavItem.Wallet
     )
 
     androidx.compose.material3.NavigationBar(
