@@ -30,7 +30,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.second.connect.ui.BottomNavItem
+import com.second.connect.ui.ConnectBottomNavigation
+import com.second.connect.ui.ConnectGraph
 import com.second.connect.ui.login.LoginScreen
+import com.second.connect.ui.login.NAVIGATION_LOGIN
+import com.second.connect.ui.mypage.InquiryScreen
+import com.second.connect.ui.mypage.NAVIGATION_INQUIRY
 import com.second.connect.ui.theme.Black
 import com.second.connect.ui.theme.ConnectTheme
 import com.second.connect.ui.theme.Pretendard
@@ -54,9 +60,9 @@ fun ConnectApp() {
 
     NavHost(
         navController = navController,
-        startDestination = "login"
+        startDestination = NAVIGATION_LOGIN
     ) {
-        composable("login") {
+        composable(NAVIGATION_LOGIN) {
             LoginScreen(
                 onLoginButtonClick = {
                     // 로그인
@@ -65,9 +71,7 @@ fun ConnectApp() {
             )
         }
         composable("main") {
-            ConnectScreen(
-//                navController = navController
-            )
+            ConnectScreen()
         }
     }
 }
@@ -75,7 +79,6 @@ fun ConnectApp() {
 @Composable
 fun ConnectScreen(
     modifier: Modifier = Modifier,
-//    navController: NavHostController
 ) {
     val navController = rememberNavController()
     Scaffold(
@@ -91,7 +94,7 @@ fun ConnectScreen(
 fun ConnectTopBar(
     modifier: Modifier = Modifier,
     title: String,
-    isScanner: Boolean
+    isScanner: Boolean = false
 ) {
     Row(
         modifier = modifier
