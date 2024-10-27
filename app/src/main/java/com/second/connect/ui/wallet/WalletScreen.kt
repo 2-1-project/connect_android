@@ -39,8 +39,7 @@ fun WalletScreen(modifier: Modifier = Modifier) {
             .background(ConnectBackground)
     ) {
         ConnectTopBar(
-            title = "My Connects",
-            isScanner = false
+            title = "My Connects"
         )
         LazyColumn {
             item {

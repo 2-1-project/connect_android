@@ -29,6 +29,8 @@ import com.second.connect.ui.theme.Main
 import com.second.connect.ui.theme.Pretendard
 import com.second.connect.ui.theme.White
 
+const val NAVIGATION_LOGIN = "login"
+
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
