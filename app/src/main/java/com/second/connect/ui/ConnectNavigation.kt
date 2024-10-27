@@ -1,4 +1,4 @@
-package com.second.connect
+package com.second.connect.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.material3.NavigationBarItem
@@ -12,6 +12,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.second.connect.R
+import com.second.connect.ui.mypage.InquiryScreen
+import com.second.connect.ui.mypage.MyPageScreen
+import com.second.connect.ui.mypage.NAVIGATION_INQUIRY
 import com.second.connect.ui.wallet.WalletScreen
 import com.second.connect.ui.share.ShareScreen
 import com.second.connect.ui.theme.White
@@ -23,6 +27,7 @@ sealed class BottomNavItem(
 ) {
     object Share : BottomNavItem(SHARE, R.drawable.share_unselect, R.drawable.share_select)
     object Wallet: BottomNavItem(WALLET, R.drawable.wallet_unselect, R.drawable.wallet_select)
+    object MyPage: BottomNavItem(MY_PAGE, R.drawable.mypage_unselect, R.drawable.mypage_select)
 }
 
 const val MY_CARD = "MY_CARD"
@@ -42,6 +47,21 @@ fun ConnectGraph(navController: NavHostController) {
         composable(BottomNavItem.Wallet.screenRoute) {
             WalletScreen()
         }
+        composable(BottomNavItem.MyPage.screenRoute) {
+            MyPageScreen(
+                onInquiryClick = {
+                    navController.navigate(NAVIGATION_INQUIRY)
+                }
+            )
+        }
+
+        composable(NAVIGATION_INQUIRY) {
+            InquiryScreen(
+                onButtonClick = {
+                    navController.navigate(BottomNavItem.MyPage.screenRoute)
+                }
+            )
+        }
     }
 }
 
@@ -51,7 +71,8 @@ fun ConnectBottomNavigation(
 ) {
     val navItems = listOf<BottomNavItem>(
         BottomNavItem.Share,
-        BottomNavItem.Wallet
+        BottomNavItem.Wallet,
+        BottomNavItem.MyPage
     )
 
     androidx.compose.material3.NavigationBar(
